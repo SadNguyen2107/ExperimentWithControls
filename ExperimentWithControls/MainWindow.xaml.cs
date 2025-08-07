@@ -27,7 +27,8 @@ namespace ExperimentWithControls
 
         private void NumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox numberTextBox = sender as TextBox;
+            if (!(sender is TextBox numberTextBox)) return;
+
             string inputText = numberTextBox.Text;
 
             bool isNumeric = IsTextNumberic(inputText);
@@ -59,6 +60,47 @@ namespace ExperimentWithControls
                 return;
             }
             number.Text = text;
+        }
+
+        private void SmallSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            number.Text = smallSlider.Value.ToString("0");
+        }
+
+        private void BigSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            number.Text = bigSlider.Value.ToString("000-000-0000");
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is RadioButton radioButton)) return;
+
+            number.Text = radioButton.Content.ToString();
+        }
+
+        private void MyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!(sender is ListBox listBox) || listBox.SelectedItem == null) return;
+
+            if (!(listBox.SelectedItem is ListBoxItem listBoxItem)) return;
+
+            number.Text = listBoxItem.Content.ToString();
+        }
+
+        private void ReadOnlyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!(sender is ComboBox comboBox) || comboBox.SelectedItem == null) return;
+            if (!(comboBox.SelectedItem is ListBoxItem listBoxItem)) return;
+
+            number.Text = listBoxItem.Content.ToString();
+        }
+
+        private void EditableComboBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!(sender is ComboBox comboBox)) return;
+
+            number.Text = comboBox.Text;
         }
     }
 }
