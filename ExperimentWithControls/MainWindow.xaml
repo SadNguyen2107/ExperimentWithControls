@@ -17,5 +17,35 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <Label Content="Enter a number"
+               Grid.Row="0"
+               Grid.Column="0"
+               FontSize="18"
+               HorizontalAlignment="Left"  
+               VerticalAlignment="Top"
+               Margin="10, 10, 0, 0"/>
+
+        <TextBox x:Name="numberTextBox" 
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="0"
+                FontSize="18"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10, 49, 0, 0"
+                Width="120"
+                TextWrapping="Wrap" 
+                PreviewTextInput="NumberTextBox_PreviewTextInput"
+                TextChanged="NumberTextBox_TextChanged"/>
+
+        <TextBlock x:Name="number"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   Text="#"
+                   FontSize="24"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap"/>
     </Grid>
 </Window>

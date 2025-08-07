@@ -24,5 +24,41 @@ namespace ExperimentWithControls
         {
             InitializeComponent();
         }
+
+        private void NumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox numberTextBox = sender as TextBox;
+            string inputText = numberTextBox.Text;
+
+            bool isNumeric = IsTextNumberic(inputText);
+            if (!isNumeric)
+            {
+                SetNumberTextBlock(string.Empty);
+                return;
+            }
+
+            SetNumberTextBlock(inputText);
+        }
+
+        private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextNumberic(e.Text);
+        }
+        private bool IsTextNumberic(string text)
+        {
+            return int.TryParse(text, out _);
+        }
+
+        private void SetNumberTextBlock(string text)
+        {
+            if (number == null) return;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                number.Text = "No number entered.";
+                return;
+            }
+            number.Text = text;
+        }
     }
 }
